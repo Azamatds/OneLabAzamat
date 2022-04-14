@@ -1,49 +1,32 @@
 import React from 'react';
 import {Component} from "react";
+import {useState} from "react";
 import './App.css';
 
+const Hw1 = () =>{
+    const [inputValue,setValue] = useState(0);
 
-type CounterProps =  {
-}
-
-type CounterState =  {
-    inputValue: number;
-}
-class Hw1 extends Component<CounterProps,CounterState>{
-    constructor(props: CounterProps) {
-        super(props);
-
-        this.state = {
-            inputValue: 0
-        };
+    const onChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
+        setValue(+e.target.value)
     }
 
-    onChange = (e: React.ChangeEvent<HTMLInputElement>)=> {
-        this.setState({inputValue:+e.target.value})
+    const onIncrease = () =>{
+        setValue(inputValue +1);
     }
 
-    onIncrease = () =>{
-        this.setState(state => ({
-            inputValue : +state.inputValue +1
-        }));
+    const onDecrease = () =>{
+        setValue(inputValue>0 ? inputValue-1 : 0);
     }
 
-    onDecrease = () =>{
-        this.setState(state =>({
-            inputValue : +state.inputValue >0 ?  +state.inputValue -1 : 0
-        }));
-    }
+    return(
+        <div className="App">
+            <h2>Counter: {+inputValue}</h2>
+            <input onInput={onChange} defaultValue={0}/>
+            <button onClick={onIncrease}>Increase</button>
+            <button onClick={onDecrease}>Decrease</button>
+        </div>
+    )
 
-    render() {
-        return(
-            <div className="App">
-                <h2>Counter: {+this.state.inputValue}</h2>
-                <input onInput={this.onChange} defaultValue={0}/>
-                <button onClick={this.onIncrease}>Increase</button>
-                <button onClick={this.onDecrease}>Decrease</button>
-            </div>
-        );
-    }
 
 }
 
@@ -58,3 +41,4 @@ function App() {
 }
 
 export default App;
+
