@@ -11,7 +11,7 @@ const Hw1 = () =>{
     }
 
     const onIncrease = () =>{
-        setValue(inputValue +1);
+        setValue(inputValue>=50 ? 0: inputValue+1);
     }
 
     const onDecrease = () =>{
@@ -20,7 +20,7 @@ const Hw1 = () =>{
 
     return(
         <div className="App">
-            <h2>Counter: {+inputValue}</h2>
+            <h2 id="h2">Counter: {+inputValue}</h2>
             <input onInput={onChange} defaultValue={0}/>
             <button onClick={onIncrease}>Increase</button>
             <button onClick={onDecrease}>Decrease</button>
